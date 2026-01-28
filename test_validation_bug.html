@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manual Validation Test</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .result { margin: 10px 0; padding: 10px; border-radius: 4px; }
+    .pass { background: #d4edda; color: #155724; }
+    .fail { background: #f8d7da; color: #721c24; }
+    button { margin: 5px; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Health Questionnaire Validation Test</h1>
+  
+  <h2>Test Steps:</h2>
+  <ol>
+    <li>Open http://localhost:5173 in browser</li>
+    <li>Sign in with Google</li>
+    <li>On Step 1 of questionnaire, leave "Full name" field EMPTY</li>
+    <li>Click "Next" button</li>
+  </ol>
+
+  <h2>Expected Behavior:</h2>
+  <div class="result pass">
+    ✓ Should show error: "Full name is required"<br>
+    ✓ Should stay on Step 1<br>
+    ✓ Should NOT proceed to Step 2
+  </div>
+
+  <h2>Bug Behavior (if validation is broken):</h2>
+  <div class="result fail">
+    ✗ Error message does NOT appear<br>
+    ✗ Briefly shows Step 2<br>
+    ✗ Form submits and shows "questionnaire completed"
+  </div>
+
+  <h2>Manual Test Checklist:</h2>
+  <div id="checklist">
+    <p><input type="checkbox"> Opened app in browser</p>
+    <p><input type="checkbox"> Signed in successfully</p>
+    <p><input type="checkbox"> Reached health questionnaire</p>
+    <p><input type="checkbox"> Left Full name field empty</p>
+    <p><input type="checkbox"> Clicked Next button</p>
+    <p><input type="checkbox"> Error message appeared</p>
+    <p><input type="checkbox"> Stayed on Step 1</p>
+  </div>
+
+  <hr>
+  <h2>Debug Info:</h2>
+  <p>Frontend build time: Check dist/ folder timestamp</p>
+  <p>Backend status: Check Django server is running on port 8000</p>
+  
+  <button onclick="window.open('http://localhost:5173', '_blank')">Open Frontend</button>
+  <button onclick="alert('Check: 1. Browser console for errors\n2. Network tab for API calls\n3. React DevTools for state')">Debug Tips</button>
+</body>
+</html>

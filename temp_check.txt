@@ -1,0 +1,70 @@
+﻿
+function DocumentUploadModal({ 
+  onClose, 
+  onUpload, 
+  uploading, 
+  error 
+}: { 
+  onClose: () => void
+  onUpload: (files: FileList | null) => void
+  uploading: boolean
+  error: string | null 
+}) {
+  const [dragOver, setDragOver] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  function handleDrop(e: React.DragEvent) {
+    e.preventDefault()
+    setDragOver(false)
+    onUpload(e.dataTransfer.files)
+  }
+
+  function handleDragOver(e: React.DragEvent) {
+    e.preventDefault()
+    setDragOver(true)
+  }
+
+  function handleDragLeave() {
+    setDragOver(false)
+  }
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-header">
+          <h2 className="section-title">Upload Medical Documents</h2>
+          <button className="chat-icon-btn" onClick={onClose}>Ã—</button>
+        </div>
+        <p className="section-subtitle">Upload prescriptions, lab reports, or medical records. AI will extract and update your health profile.</p>
+        
+        <div 
+          className={`upload-dropzone ${dragOver ? 'upload-dropzone-active' : ''}`}
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onClick={() => fileInputRef.current?.click()}
+        >
+          <div className="upload-icon">ðŸ“„</div>
+          <p className="upload-text">Drag & drop files here or click to browse</p>
+          <p className="upload-hint">Supports PDF, JPG, PNG (max 10MB)</p>
+          <input
+            ref={fileInputRef}
+            type="file"
+            multiple
+            accept=".pdf,.jpg,.jpeg,.png"
+            style={{ display: 'none' }}
+            onChange={(e) => onUpload(e.target.files)}
+          />
+        </div>
+
+        {error && <p className="error">{error}</p>}
+        
+        {uploading && (
+          <div className="upload-progress">
+            <p>Processing documents with AI...</p>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
