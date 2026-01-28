@@ -1,14 +1,18 @@
-# AI Doctor - Health Assistant Platform
+# Doc-Chat 🩺 - AI Healthcare Platform
 
-A full-stack health assistant application with AI-powered health insights, symptom analysis, and doctor recommendations.
+A comprehensive healthcare assistance platform built with Django REST API and React, featuring AI-powered health insights, ECG analysis, voice-based symptom collection, and doctor-patient portal system.
+
+> **Team Project**: This healthcare platform was developed as a collaborative team project, focusing on creating an accessible and intelligent healthcare solution.
 
 ## Tech Stack
 
 - **Frontend**: React 19 + TypeScript + Vite
-- **Backend**: Django 5.2 + PostgreSQL
+- **Backend**: Django 5.2 + Django REST Framework + PostgreSQL
 - **Authentication**: Supabase Auth
-- **AI**: Google Gemini API
+- **AI/ML**: Google Gemini API + Scikit-learn (ECG Models)
 - **Maps**: Google Maps API
+- **Voice Processing**: Web Speech API
+- **Deployment**: Railway
 
 ---
 
