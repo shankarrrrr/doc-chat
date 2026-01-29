@@ -1,0 +1,8 @@
+[build]
+builder = "nixpacks"
+
+[build.nixpacksConfig]
+phases = ["setup", "install", "build", "start"]
+
+[deploy]
+startCommand = "python manage.py migrate --noinput && gunicorn config.wsgi --bind 0.0.0.0:$PORT"
