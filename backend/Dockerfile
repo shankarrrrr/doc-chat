@@ -25,8 +25,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose port
-EXPOSE $PORT
+EXPOSE 8000
 
 # Start command - collect static files, run migrations, then start server
 # All of these need environment variables, so they run at startup when vars are available
-CMD python manage.py collectstatic --noinput && python manage.py migrate --noinput && gunicorn config.wsgi --bind 0.0.0.0:$PORT
+CMD python manage.py collectstatic --noinput && python manage.py migrate --noinput && gunicorn config.wsgi --bind 0.0.0.0:${PORT}
