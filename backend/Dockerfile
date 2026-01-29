@@ -24,11 +24,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project
 COPY . .
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
-
 # Expose port
 EXPOSE $PORT
 
-# Start command - migrations run here when database is available
-CMD python manage.py migrate --noinput && gunicorn config.wsgi --bind 0.0.0.0:$PORT
+# Start command - collect static files, run migrations, then start server
+# All of these need environment variables, so they run at startup when vars are available
+CMD python manage.py collectstatic --noinput && python manage.py migrate --noinput && gunicorn config.wsgi --bind 0.0.0.0:$PORT
