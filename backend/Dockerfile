@@ -29,4 +29,4 @@ EXPOSE 8000
 
 # Start command - collect static files, run migrations, then start server
 # All of these need environment variables, so they run at startup when vars are available
-CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate api 0005_add_role_field --fake && python manage.py migrate --noinput && gunicorn config.wsgi --bind 0.0.0.0:$PORT"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate --fake-initial && python manage.py migrate --noinput && gunicorn config.wsgi --bind 0.0.0.0:$PORT"]
